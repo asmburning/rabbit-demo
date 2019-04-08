@@ -50,6 +50,7 @@
 
     </dependencies>
 
+
     <build>
         <plugins>
             <plugin>
@@ -70,6 +71,11 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
         </plugins>
     </build>
 
@@ -85,16 +91,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>archjava</id>
-            <url>http://maven.hellobike.cn/nexus/content/repositories/carkey-archjava-snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>archjava</id>
-            <url>http://maven.hellobike.cn/nexus/content/repositories/carkey-archjava-release/</url>
-        </repository>
-    </distributionManagement>
 
 </project>
