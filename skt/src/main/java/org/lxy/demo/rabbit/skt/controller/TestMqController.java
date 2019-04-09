@@ -24,4 +24,10 @@ public class TestMqController {
         mqProducer.sendOrderFanoutMessage(MessageOrderFanout.builder().orderId(RandomStringUtils.randomAlphanumeric(5)).status(1).amount(BigDecimal.ONE).build());
         return "ok";
     }
+
+    @RequestMapping("/sendMessage2")
+    public Object sendMessage2(){
+        mqProducer.sendOrderFanoutMessage2(MessageOrderFanout.builder().orderId(RandomStringUtils.randomAlphanumeric(5)).status(1).amount(BigDecimal.ONE).build());
+        return "ok";
+    }
 }

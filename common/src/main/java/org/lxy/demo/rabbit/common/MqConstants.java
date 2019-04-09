@@ -22,7 +22,9 @@ public interface MqConstants {
 
         String QF_ORDER_PAY_CALLBACK = "QF_ORDER_PAY_CALLBACK";
 
-        Set<String> QUEUE_SET = Sets.newHashSet(QF_ORDER_CREATE, QF_ORDER_CANCEL, QF_ORDER_PAY_CALLBACK);
+        String QF_ORDER_COMPLETE = "QF_ORDER_COMPLETE";
+
+        Set<String> QUEUE_SET = Sets.newHashSet(QF_ORDER_CREATE, QF_ORDER_CANCEL, QF_ORDER_PAY_CALLBACK, QF_ORDER_COMPLETE);
     }
 
     interface OrderDirect {

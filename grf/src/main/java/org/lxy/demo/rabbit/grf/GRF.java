@@ -1,5 +1,6 @@
 package org.lxy.demo.rabbit.grf;
 
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2019-04-08
  */
 @SpringBootApplication
+@EnableRabbit
 public class GRF {
 
     public static void main(String[] args) {

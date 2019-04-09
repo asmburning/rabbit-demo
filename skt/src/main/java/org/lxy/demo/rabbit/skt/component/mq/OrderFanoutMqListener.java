@@ -1,9 +1,7 @@
 package org.lxy.demo.rabbit.skt.component.mq;
 
-import com.alibaba.fastjson.JSON;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.lxy.demo.rabbit.common.MessageOrderFanout;
 import org.lxy.demo.rabbit.common.MqConstants;
 import org.springframework.amqp.rabbit.annotation.Exchange;
@@ -29,18 +27,14 @@ public class OrderFanoutMqListener {
             bindings = @QueueBinding(value = @Queue(value = MqConstants.OrderFanout.QF_ORDER_CREATE, durable = "true", autoDelete = "false"),
                     exchange = @Exchange(value = MqConstants.OrderFanout.EXCHANGER_NAME, durable = "true", autoDelete = "false", internal = "false", type = "fanout"),
                     key = "rent-bike"))
-    public void onCreateMessage(@Payload String message, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
+    public void onCreateMessage(@Payload MessageOrderFanout messageOrderFanout, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
         log.info("onCreateMessage receiver getMessage ");
         try {
-            if (StringUtils.isBlank(message)) {
-                return;
-            }
-            MessageOrderFanout messageOrderFanout = JSON.parseObject(message, MessageOrderFanout.class);
 
             log.info("onCreateMessage messageOrderFanout:{},deliveryTag:{}", messageOrderFanout, deliveryTag);
 
         } catch (Exception e) {
-            log.error("onCreateMessage message:{},deliveryTag:{}", message, deliveryTag, e);
+            log.error("onCreateMessage message:{},deliveryTag:{}", messageOrderFanout, deliveryTag, e);
         } finally {
             channel.basicAck(deliveryTag, false);
         }
@@ -50,18 +44,13 @@ public class OrderFanoutMqListener {
             bindings = @QueueBinding(value = @Queue(value = MqConstants.OrderFanout.QF_ORDER_CANCEL, durable = "true", autoDelete = "false"),
                     exchange = @Exchange(value = MqConstants.OrderFanout.EXCHANGER_NAME, durable = "true", autoDelete = "false", internal = "false", type = "fanout"),
                     key = "rent-bike"))
-    public void onCancelMessage(@Payload String message, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
+    public void onCancelMessage(@Payload MessageOrderFanout messageOrderFanout, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
         log.info("onCancelMessage receiver getMessage ");
         try {
-            if (StringUtils.isBlank(message)) {
-                return;
-            }
-            MessageOrderFanout messageOrderFanout = JSON.parseObject(message, MessageOrderFanout.class);
-
             log.info("onCancelMessage messageOrderFanout:{},deliveryTag:{}", messageOrderFanout, deliveryTag);
 
         } catch (Exception e) {
-            log.error("onCancelMessage message:{},deliveryTag:{}", message, deliveryTag, e);
+            log.error("onCancelMessage message:{},deliveryTag:{}", messageOrderFanout, deliveryTag, e);
         } finally {
             channel.basicAck(deliveryTag, false);
         }
@@ -71,18 +60,14 @@ public class OrderFanoutMqListener {
             bindings = @QueueBinding(value = @Queue(value = MqConstants.OrderFanout.QF_ORDER_PAY_CALLBACK, durable = "true", autoDelete = "false"),
                     exchange = @Exchange(value = MqConstants.OrderFanout.EXCHANGER_NAME, durable = "true", autoDelete = "false", internal = "false", type = "fanout"),
                     key = "rent-bike"))
-    public void onPayCallbackMessage(@Payload String message, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
+    public void onPayCallbackMessage(@Payload MessageOrderFanout messageOrderFanout, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
         log.info("onPayCallbackMessage receiver getMessage ");
         try {
-            if (StringUtils.isBlank(message)) {
-                return;
-            }
-            MessageOrderFanout messageOrderFanout = JSON.parseObject(message, MessageOrderFanout.class);
 
             log.info("onPayCallbackMessage messageOrderFanout:{},deliveryTag:{}", messageOrderFanout, deliveryTag);
 
         } catch (Exception e) {
-            log.error("onPayCallbackMessage message:{},deliveryTag:{}", message, deliveryTag, e);
+            log.error("onPayCallbackMessage message:{},deliveryTag:{}", messageOrderFanout, deliveryTag, e);
         } finally {
             channel.basicAck(deliveryTag, false);
         }

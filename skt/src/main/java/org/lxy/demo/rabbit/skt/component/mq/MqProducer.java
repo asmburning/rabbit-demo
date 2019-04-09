@@ -1,6 +1,5 @@
 package org.lxy.demo.rabbit.skt.component.mq;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.lxy.demo.rabbit.common.MessageOrderBuyCallback;
 import org.lxy.demo.rabbit.common.MessageOrderFanout;
@@ -22,7 +21,12 @@ public class MqProducer {
     private AmqpTemplate amqpTemplate;
 
     public void sendOrderFanoutMessage(MessageOrderFanout messageOrderFanout) {
-        amqpTemplate.convertAndSend(MqConstants.OrderFanout.EXCHANGER_NAME, MqConstants.OrderFanout.ROUTING_KEY, JSON.toJSONString(messageOrderFanout));
+        amqpTemplate.convertAndSend(MqConstants.OrderFanout.EXCHANGER_NAME, MqConstants.OrderFanout.ROUTING_KEY, messageOrderFanout);
+        log.info("sendFanoutMessageSuccess");
+    }
+
+    public void sendOrderFanoutMessage2(MessageOrderFanout messageOrderFanout) {
+        amqpTemplate.convertAndSend(MqConstants.OrderFanout.EXCHANGER_NAME, MqConstants.OrderFanout.QF_ORDER_CREATE, messageOrderFanout);
         log.info("sendFanoutMessageSuccess");
     }
 
