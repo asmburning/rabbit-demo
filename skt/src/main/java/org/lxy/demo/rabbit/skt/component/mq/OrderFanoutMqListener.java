@@ -25,8 +25,7 @@ public class OrderFanoutMqListener {
 
     @RabbitListener(containerFactory = "rabbitListenerContainerFactory", admin = "rabbitAdmin",
             bindings = @QueueBinding(value = @Queue(value = MqConstants.OrderFanout.QF_ORDER_CREATE, durable = "true", autoDelete = "false"),
-                    exchange = @Exchange(value = MqConstants.OrderFanout.EXCHANGER_NAME, durable = "true", autoDelete = "false", internal = "false", type = "fanout"),
-                    key = "rent-bike"))
+                    exchange = @Exchange(value = MqConstants.OrderFanout.EXCHANGER_NAME, durable = "true", autoDelete = "false", internal = "false", type = "fanout")))
     public void onCreateMessage(@Payload MessageOrderFanout messageOrderFanout, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
         log.info("onCreateMessage receiver getMessage ");
         try {
@@ -42,8 +41,7 @@ public class OrderFanoutMqListener {
 
     @RabbitListener(containerFactory = "rabbitListenerContainerFactory", admin = "rabbitAdmin",
             bindings = @QueueBinding(value = @Queue(value = MqConstants.OrderFanout.QF_ORDER_CANCEL, durable = "true", autoDelete = "false"),
-                    exchange = @Exchange(value = MqConstants.OrderFanout.EXCHANGER_NAME, durable = "true", autoDelete = "false", internal = "false", type = "fanout"),
-                    key = "rent-bike"))
+                    exchange = @Exchange(value = MqConstants.OrderFanout.EXCHANGER_NAME, durable = "true", autoDelete = "false", internal = "false", type = "fanout")))
     public void onCancelMessage(@Payload MessageOrderFanout messageOrderFanout, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
         log.info("onCancelMessage receiver getMessage ");
         try {
@@ -58,8 +56,7 @@ public class OrderFanoutMqListener {
 
     @RabbitListener(containerFactory = "rabbitListenerContainerFactory", admin = "rabbitAdmin",
             bindings = @QueueBinding(value = @Queue(value = MqConstants.OrderFanout.QF_ORDER_PAY_CALLBACK, durable = "true", autoDelete = "false"),
-                    exchange = @Exchange(value = MqConstants.OrderFanout.EXCHANGER_NAME, durable = "true", autoDelete = "false", internal = "false", type = "fanout"),
-                    key = "rent-bike"))
+                    exchange = @Exchange(value = MqConstants.OrderFanout.EXCHANGER_NAME, durable = "true", autoDelete = "false", internal = "false", type = "fanout")))
     public void onPayCallbackMessage(@Payload MessageOrderFanout messageOrderFanout, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
         log.info("onPayCallbackMessage receiver getMessage ");
         try {

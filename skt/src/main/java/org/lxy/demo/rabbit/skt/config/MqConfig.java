@@ -65,6 +65,41 @@ public class MqConfig {
         return declarableList;
     }
 
+    @Bean
+    public List<Declarable> orderDirect(RabbitAdmin rabbitAdmin) {
+        DirectExchange orderDirectExchange = new DirectExchange(MqConstants.OrderDirect.EXCHANGER_NAME);
+        List<Declarable> declarableList = new ArrayList<>();
+        declarableList.add(orderDirectExchange);
+        for (String queueName : MqConstants.OrderDirect.QUEUE_SET) {
+            Queue queue = new Queue(queueName, true, false, false);
+            queue.setAdminsThatShouldDeclare(rabbitAdmin);
+
+            declarableList.add(queue);
+
+            declarableList.add(BindingBuilder.bind(queue).to(orderDirectExchange).with(queueName));
+        }
+        return declarableList;
+    }
+
+
+    @Bean
+    public List<Declarable> payTopic(RabbitAdmin rabbitAdmin) {
+        TopicExchange payTopicExchange = new TopicExchange(MqConstants.PayTopic.EXCHANGER_NAME);
+        List<Declarable> declarableList = new ArrayList<>();
+        declarableList.add(payTopicExchange);
+
+        Queue payQueue = new Queue(MqConstants.PayTopic.QT_PAY, true, false, false);
+        payQueue.setAdminsThatShouldDeclare(rabbitAdmin);
+        declarableList.add(payQueue);
+        declarableList.add(BindingBuilder.bind(payQueue).to(payTopicExchange).with(MqConstants.PayTopic.QTRK_PAY));
+
+        Queue collectPayQueue = new Queue(MqConstants.PayTopic.QT_PAY_COLLECT, true, false, false);
+        collectPayQueue.setAdminsThatShouldDeclare(rabbitAdmin);
+        declarableList.add(collectPayQueue);
+        declarableList.add(BindingBuilder.bind(collectPayQueue).to(payTopicExchange).with(MqConstants.PayTopic.QTRK_PAY_COLLECT));
+
+        return declarableList;
+    }
 
     @Bean
     public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory() {
@@ -74,8 +109,8 @@ public class MqConfig {
         factory.setMessageConverter(new Jackson2JsonMessageConverter());
         //设置应答模式
         factory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
-        factory.setConcurrentConsumers(1);
-        factory.setMaxConcurrentConsumers(5);
+        factory.setConcurrentConsumers(5);
+        factory.setMaxConcurrentConsumers(10);
         //每次请求发送给每个消费者的消息数量
         factory.setPrefetchCount(250);
         //是否重回队列,true:当消息消费出现异常时，没有被catch的话，会被重新丢回队列头部，重新消费 false:直接丢弃

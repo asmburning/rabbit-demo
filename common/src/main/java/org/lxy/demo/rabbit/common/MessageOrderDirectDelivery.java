@@ -15,9 +15,8 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MessageOrderBuyCallback {
+public class MessageOrderDirectDelivery {
 
     private String orderId;
     private BigDecimal amount;
-    private Integer payChannel;
 }

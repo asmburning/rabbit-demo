@@ -10,6 +10,9 @@ import java.util.Set;
  */
 public interface MqConstants {
 
+    /**
+     * broadcast message to all binding queues ignore routingKey
+     */
     interface OrderFanout {
 
         String EXCHANGER_NAME = "EXCHANGER_FANOUT_ORDER";
@@ -27,6 +30,9 @@ public interface MqConstants {
         Set<String> QUEUE_SET = Sets.newHashSet(QF_ORDER_CREATE, QF_ORDER_CANCEL, QF_ORDER_PAY_CALLBACK, QF_ORDER_COMPLETE);
     }
 
+    /**
+     * sending message to the special queue based on the binding routing key
+     */
     interface OrderDirect {
 
         String EXCHANGER_NAME = "EXCHANGER_DIRECT_ORDER";
@@ -34,6 +40,36 @@ public interface MqConstants {
         String QD_ORDER_BIND = "QD_ORDER_BIND";
 
         String QD_ORDER_DELIVERY = "QD_ORDER_DELIVERY";
+
+        Set<String> QUEUE_SET = Sets.newHashSet(QD_ORDER_BIND, QD_ORDER_DELIVERY);
+
+    }
+
+    /**
+     * just like aspect in spring
+     * a queue in topic concerns the special aspect , eg pay callback may happen in different business line
+     * a queue concerns pay may
+     */
+    interface PayTopic {
+
+        String EXCHANGER_NAME = "EXCHANGER_TOPIC_ORDER";
+
+        String QT_PAY_COLLECT = "QT_PAY_COLLECT";
+        String QTRK_PAY_COLLECT = "#.collect.pay.#";
+
+        String QT_PAY = "QT_PAY";
+        String QTRK_PAY = "#.pay.#";
+
+        String RK_RENT_ORDER_PAY_CALLBACK = "rent.order.pay.callback";
+
+        String RK_RENT_COLLECT_PAY_CALLBACK = "rent.collect.pay.callback";
+
+        String RK_RENT_DELIVERY_PAY_CALLBACK = "rent.delivery.pay.callback";
+
+        String RK_RENT_COMPENSATION_PAY_CALLBACK = "rent.compensation.pay.callback";
+
+        String RK_RENT_FINE_PAY_CALLBACK = "rent.fine.pay.callback";
+
 
     }
 
