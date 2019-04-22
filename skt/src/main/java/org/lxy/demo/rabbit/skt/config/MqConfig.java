@@ -70,13 +70,11 @@ public class MqConfig {
         DirectExchange orderDirectExchange = new DirectExchange(MqConstants.OrderDirect.EXCHANGER_NAME);
         List<Declarable> declarableList = new ArrayList<>();
         declarableList.add(orderDirectExchange);
-        for (String queueName : MqConstants.OrderDirect.QUEUE_SET) {
-            Queue queue = new Queue(queueName, true, false, false);
+        for (MqConstants.OrderDirect.OrderDirectQueue directQueue : MqConstants.OrderDirect.OrderDirectQueue.values()) {
+            Queue queue = new Queue(directQueue.getQueueName(), true, false, false);
             queue.setAdminsThatShouldDeclare(rabbitAdmin);
-
             declarableList.add(queue);
-
-            declarableList.add(BindingBuilder.bind(queue).to(orderDirectExchange).with(queueName));
+            declarableList.add(BindingBuilder.bind(queue).to(orderDirectExchange).with(directQueue.getRoutingKey()));
         }
         return declarableList;
     }
@@ -97,6 +95,20 @@ public class MqConfig {
         collectPayQueue.setAdminsThatShouldDeclare(rabbitAdmin);
         declarableList.add(collectPayQueue);
         declarableList.add(BindingBuilder.bind(collectPayQueue).to(payTopicExchange).with(MqConstants.PayTopic.QTRK_PAY_COLLECT));
+
+        return declarableList;
+    }
+
+    @Bean
+    public List<Declarable> headers(RabbitAdmin rabbitAdmin) {
+        HeadersExchange headersExchange = new HeadersExchange(MqConstants.OrderHeaders.EXCHANGER_NAME);
+        List<Declarable> declarableList = new ArrayList<>();
+        declarableList.add(headersExchange);
+
+        Queue headersQueue = new Queue(MqConstants.OrderHeaders.QH_ORDER, true, false, false);
+        headersQueue.setAdminsThatShouldDeclare(rabbitAdmin);
+        declarableList.add(headersQueue);
+        declarableList.add(BindingBuilder.bind(headersQueue).to(headersExchange).whereAny(MqConstants.OrderHeaders.QH_ORDER_KEY_TAG).exist());
 
         return declarableList;
     }

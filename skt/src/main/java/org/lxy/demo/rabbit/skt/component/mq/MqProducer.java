@@ -38,6 +38,11 @@ public class MqProducer {
         log.info("sendOrderDirectBindMessage");
     }
 
+    public void sendOrderDirectPayMessage(MessageOrderDirectDelivery messageOrderDirectDelivery) {
+        amqpTemplate.convertAndSend(MqConstants.OrderDirect.EXCHANGER_NAME, MqConstants.OrderDirect.QD_ORDER_PAY, messageOrderDirectDelivery);
+        log.info("sendOrderDirectBindMessage");
+    }
+
     public void sendPayTopicMessage(String routingKey, MessageTopicPay messageTopicPay) {
         amqpTemplate.convertAndSend(MqConstants.PayTopic.EXCHANGER_NAME, routingKey, messageTopicPay);
         log.info("sendPayTopicMessage");

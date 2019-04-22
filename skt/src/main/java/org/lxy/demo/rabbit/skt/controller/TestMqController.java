@@ -47,6 +47,12 @@ public class TestMqController {
         return "ok";
     }
 
+    @RequestMapping("/sendOrderDirectPayMessage")
+    public Object sendOrderDirectPayMessage() {
+        mqProducer.sendOrderDirectPayMessage(MessageOrderDirectDelivery.builder().orderId(RandomStringUtils.randomAlphanumeric(5)).amount(BigDecimal.ONE).build());
+        return "ok";
+    }
+
     @RequestMapping("/sendTopicMessage")
     public Object sendTopicMessage(@RequestParam String routingKey) {
         mqProducer.sendPayTopicMessage(routingKey,

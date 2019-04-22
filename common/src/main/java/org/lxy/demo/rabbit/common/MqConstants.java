@@ -1,6 +1,8 @@
 package org.lxy.demo.rabbit.common;
 
 import com.google.common.collect.Sets;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.Set;
 
@@ -38,10 +40,25 @@ public interface MqConstants {
         String EXCHANGER_NAME = "EXCHANGER_DIRECT_ORDER";
 
         String QD_ORDER_BIND = "QD_ORDER_BIND";
-
         String QD_ORDER_DELIVERY = "QD_ORDER_DELIVERY";
+        String QD_ORDER_PAY = "QD_ORDER_PAY";
+        String QD_USER_PAY_DIRECT = "QD_USER_PAY_DIRECT";
 
-        Set<String> QUEUE_SET = Sets.newHashSet(QD_ORDER_BIND, QD_ORDER_DELIVERY);
+
+        @AllArgsConstructor
+        @Getter
+        enum OrderDirectQueue{
+
+            QD_ORDER_BIND("QD_ORDER_BIND", "QD_ORDER_BIND", "订单绑定"),
+            QD_ORDER_DELIVERY("QD_ORDER_DELIVERY", "QD_ORDER_DELIVERY", "订单配送"),
+            QD_ORDER_PAY("QD_ORDER_PAY", "QD_ORDER_PAY", "订单支付成功"),
+            QD_USER_PAY_DIRECT("QD_USER_PAY_DIRECT", "QD_ORDER_PAY", "订单支付成功")
+            ;
+
+            private String queueName;
+            private String routingKey;
+            private String msg;
+        }
 
     }
 
@@ -70,6 +87,16 @@ public interface MqConstants {
 
         String RK_RENT_FINE_PAY_CALLBACK = "rent.fine.pay.callback";
 
+
+    }
+
+
+    interface OrderHeaders {
+        String EXCHANGER_NAME = "EXCHANGER_HEADERS_ORDER";
+
+        String QH_ORDER = "QH_ORDER";
+
+        String QH_ORDER_KEY_TAG = "x-tag";
 
     }
 

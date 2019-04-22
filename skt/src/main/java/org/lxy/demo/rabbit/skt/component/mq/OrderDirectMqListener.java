@@ -57,4 +57,36 @@ public class OrderDirectMqListener {
         }
     }
 
+    @RabbitListener(containerFactory = "rabbitListenerContainerFactory", admin = "rabbitAdmin",
+            bindings = @QueueBinding(value = @Queue(value = MqConstants.OrderDirect.QD_ORDER_PAY, durable = "true", autoDelete = "false"),
+                    exchange = @Exchange(value = MqConstants.OrderDirect.EXCHANGER_NAME, durable = "true", autoDelete = "false", internal = "false", type = "direct"),
+                    key = MqConstants.OrderDirect.QD_ORDER_PAY))
+    public void onOrderPayMessage(@Payload MessageOrderDirectDelivery directDelivery, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
+        log.info("onOrderPayMessage receiver getMessage ");
+        try {
+            log.info("onOrderPayMessage messageOrderFanout:{},deliveryTag:{}", directDelivery, deliveryTag);
+
+        } catch (Exception e) {
+            log.error("onOrderPayMessage message:{},deliveryTag:{}", directDelivery, deliveryTag, e);
+        } finally {
+            channel.basicAck(deliveryTag, false);
+        }
+    }
+
+    @RabbitListener(containerFactory = "rabbitListenerContainerFactory", admin = "rabbitAdmin",
+            bindings = @QueueBinding(value = @Queue(value = MqConstants.OrderDirect.QD_USER_PAY_DIRECT, durable = "true", autoDelete = "false"),
+                    exchange = @Exchange(value = MqConstants.OrderDirect.EXCHANGER_NAME, durable = "true", autoDelete = "false", internal = "false", type = "direct"),
+                    key = MqConstants.OrderDirect.QD_ORDER_PAY))
+    public void onUserPayMessage(@Payload MessageOrderDirectDelivery directDelivery, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
+        log.info("onUserPayMessage receiver getMessage ");
+        try {
+            log.info("onUserPayMessage messageOrderFanout:{},deliveryTag:{}", directDelivery, deliveryTag);
+
+        } catch (Exception e) {
+            log.error("onUserPayMessage message:{},deliveryTag:{}", directDelivery, deliveryTag, e);
+        } finally {
+            channel.basicAck(deliveryTag, false);
+        }
+    }
+
 }
