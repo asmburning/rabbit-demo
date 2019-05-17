@@ -113,13 +113,17 @@ public class MyLinkedList<T> {
         doRecursiveReverse(head, next);
     }
 
-    private void doRecursiveReverse(Node head, Node tail) {
-        if (null == tail) {
+    /**
+     * head 已经反转ok的
+     * remaining 需要继续反转的
+     */
+    private void doRecursiveReverse(Node head, Node remaining) {
+        if (null == remaining) {
             return;
         }
-        Node next = tail.getNext();
-        tail.setNext(head.getNext());
-        head.setNext(tail);
+        Node next = remaining.getNext();
+        remaining.setNext(head.getNext());
+        head.setNext(remaining);
         doRecursiveReverse(head, next);
     }
 
