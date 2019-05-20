@@ -18,7 +18,7 @@ public class TestLong {
 
     /**
      * https://juejin.im/post/5ce0e550f265da1b897a9f55
-     *
+     * <p>
      * # 136. 只出现一次的数字
      * 给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
      * <p>
@@ -95,11 +95,14 @@ public class TestLong {
         }
         // 得到最低的有效位，即两个数不同的那一位
         diff &= -diff;
+        log.info("diff:{}", diff);
         int[] result = new int[2];
         for (int num : nums) {
             if ((num & diff) == 0) {
+                log.info("diff 0:{}", num);
                 result[0] ^= num;
             } else {
+                log.info("diff 1:{}", num);
                 result[1] ^= num;
             }
         }
