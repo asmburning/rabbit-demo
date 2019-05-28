@@ -130,4 +130,19 @@ public class TestLong {
         log.info("" + n);
     }
 
+    @Test
+    public void bitPower() {
+        int m = 3, n = 3;
+        System.out.println(Math.pow(m, n));
+        long result = 1;
+        long tmp = m;
+        while (n != 0) {
+            if ((n & 1) == 1) {
+                result *= tmp;
+            }
+            tmp = tmp * m;
+            n = n >> 1;
+        }
+        System.out.println(result);
+    }
 }
