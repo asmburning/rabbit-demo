@@ -10,7 +10,6 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>skt</module>
-        <module>kz</module>
         <module>grf</module>
         <module>common</module>
     </modules>

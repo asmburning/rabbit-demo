@@ -94,8 +94,9 @@ public class TestLong {
             diff ^= num;
         }
         // 得到最低的有效位，即两个数不同的那一位
+        log.info("before diff:{}, -diff:{} ", Integer.toBinaryString(diff), Integer.toBinaryString(-diff));
         diff &= -diff;
-        log.info("diff:{}", diff);
+        log.info("after diff:{}", diff);
         int[] result = new int[2];
         for (int num : nums) {
             if ((num & diff) == 0) {
@@ -107,6 +108,26 @@ public class TestLong {
             }
         }
         return result;
+    }
+
+    @Test
+    public void findN() {
+        int n = 1025;
+        log.info("" + n + ":" + Integer.toBinaryString(n));
+        n |= n >> 1;
+        log.info("" + n + ":" + Integer.toBinaryString(n));
+        n |= n >> 2;
+        log.info("" + n + ":" + Integer.toBinaryString(n));
+        n |= n >> 4;
+        log.info("" + n + ":" + Integer.toBinaryString(n));
+        n |= n >> 8;
+        log.info("" + n + ":" + Integer.toBinaryString(n));
+        n |= n >> 16;
+        log.info("" + n + ":" + Integer.toBinaryString(n));
+        n |= n >> 32;
+        log.info("" + n + ":" + Integer.toBinaryString(n));
+        n = (n + 1) >> 1;
+        log.info("" + n);
     }
 
 }
