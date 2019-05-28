@@ -111,7 +111,7 @@ public class TestLong {
     }
 
     @Test
-    public void findN() {
+    public void findMaxPow2() {
         int n = 1025;
         log.info("" + n + ":" + Integer.toBinaryString(n));
         n |= n >> 1;
