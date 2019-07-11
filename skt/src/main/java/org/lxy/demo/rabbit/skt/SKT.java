@@ -2,6 +2,7 @@ package org.lxy.demo.rabbit.skt;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * @author liuxinyi
@@ -11,7 +12,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class SKT {
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder()
+        ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder()
                 .sources(SKT.class)
                 .run(args);
     }
