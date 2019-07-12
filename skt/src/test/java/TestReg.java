@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class TestReg {
 
     public static void main(String[] args) {
-        testReg1();
+        testReg2();
     }
 
     public static void testReg1() {
@@ -19,6 +19,15 @@ public class TestReg {
             String line = scanner.nextLine();
             System.out.println(line.length());
             log.info("result:{}, line:{}", line.matches("^[a-zA-Z]([a-z0-9A-Z_]|-){0,29}"), line);
+        }
+    }
+
+    public static void testReg2() {
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            System.out.println(line.length());
+            log.info("result:{}, line:{}", line.matches("^[a-zA-Z]([\\w_]|-){0,29}"), line);
         }
     }
 }
