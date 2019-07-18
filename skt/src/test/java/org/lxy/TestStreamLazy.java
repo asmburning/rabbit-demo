@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Test;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +24,7 @@ public class TestStreamLazy {
         log.info("wasCalled");
         counter++;
     }
+    // Lazy Invocation
 
     @Test
     public void testLazy() {
@@ -125,5 +127,13 @@ public class TestStreamLazy {
     private String orElseGet(int n) {
         log.info("method or else get");
         return RandomStringUtils.randomAlphanumeric(n + 5);
+    }
+
+    public static void main(String[] args) {
+        BigInteger bigInteger = BigInteger.valueOf(8);
+        System.out.println(bigInteger.getLowestSetBit());
+        System.out.println(bigInteger.bitLength());
+        System.out.println(bigInteger.bitCount());
+        System.out.println((byte)3);
     }
 }
