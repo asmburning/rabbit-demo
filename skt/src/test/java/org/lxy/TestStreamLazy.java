@@ -126,6 +126,7 @@ public class TestStreamLazy {
 
     private String orElseGet(int n) {
         log.info("method or else get");
+        log.info("method or else get");
         return RandomStringUtils.randomAlphanumeric(n + 5);
     }
 
