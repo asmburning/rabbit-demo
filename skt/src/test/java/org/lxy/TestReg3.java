@@ -29,6 +29,7 @@ public class TestReg3 {
         String s = RandomStringUtils.randomAlphanumeric(30);
         boolean matches = Pattern.matches(reg, s);
         log.info("s:{}, matches:{}", s, matches);
+
     }
 
 }
