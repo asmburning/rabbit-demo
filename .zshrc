@@ -359,3 +359,5 @@ alias stashFlow='echo -e "
 \e[4;33m resolved conflict if need \e[0m
 \e[4;34m git commit -am msg \e[0m
 \e[4;36m gerritpush \e[0m"'
+
+#just test sync
