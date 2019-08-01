@@ -1,6 +1,8 @@
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+
 /**
  * @author liuxinyi
  * @date 2019-05-14
@@ -144,5 +146,11 @@ public class TestLong {
             n = n >> 1;
         }
         System.out.println(result);
+    }
+
+    public static void main(String[] args) {
+        LocalDateTime start = LocalDateTime.of(2019, 07, 30, 0, 0, 0);
+        LocalDateTime plusYears = start.plusYears(1).minusSeconds(1);
+        System.out.println(plusYears);
     }
 }
