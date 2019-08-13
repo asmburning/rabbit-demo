@@ -394,3 +394,10 @@ gbd(){
     fi
   done
 }
+
+######## test ln ######
+syncZshrc(){
+  cd /Users/liuxinyi/Documents/code/GitHub/rabbit-demo1
+  gam 'sync'
+  git push
+}
