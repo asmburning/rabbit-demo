@@ -149,7 +149,7 @@ alias gb='echo $(git branch) '
 alias vds='python /Users/liuxinyi/venus_ds.py'
 
 alias finance='echo -e "
-\e[4;32m devs:04146  fat:3773  \e[0m
+\e[4;32m devs: 3081  fat:3773  \e[0m
 \e[4;33m uat:04679  pt:04698   \e[0m
 \e[4;36m pro:04630 04631 04632 04633  \e[0m" ;
 echo "cd /workspace/carkey/AppRentFinanceService/latest/logs" | pbcopy;lg'
@@ -161,7 +161,7 @@ alias user='echo -e "
 echo "cd /workspace/carkey/AppRentUserService/latest/logs" | pbcopy;lg'
 
 alias order='echo -e "
-\e[4;32m dev:03081  03888  fat:3772 3773 2591 \e[0m
+\e[4;32m dev:03081  03888  fat: 3772 \e[0m
 \e[4;33m uat:3774 3775  pt:3091   \e[0m
 \e[4;36m pro:1606 1607 2725 2726  \e[0m" ;
 echo "cd /workspace/carkey/AppRentOrderService/latest/logs" | pbcopy;lg'
@@ -270,6 +270,7 @@ ggrb(){
 
 # checkout wechat$
 checkout(){
+  git fetch
   rb=$(git branch -r | grep $1);
   b=${rb:9}
   echo -e "\e[4;31m find branch :$b \e[0m";
@@ -361,3 +362,35 @@ alias stashFlow='echo -e "
 \e[4;36m gerritpush \e[0m"'
 
 #just test sync
+
+alias gp="git pull"
+alias gam="git commit -am "
+alias gs="git status"
+
+g(){
+  open -a 'Google Chrome' "https://www.google.com/search?q=$1"
+}
+
+alias pdf="open -a 'Adobe Acrobat Reader DC' "
+alias preview="open -a 'Preview' "
+
+gbd(){
+  # local  : git branch -d branchName
+  # remote : git push origin --delete <BranchName>
+  # delete local branches except current branch and master
+  echo "begin delete local branches"
+  cb=$(git branch|grep \*|head -n 1)
+  b=${cb:2}
+  echo "current branch $b"
+  git branch | tr -d " *"  | while read line ; do
+    echo $line;
+    if [ $line = "master" ]; then
+      echo -e "\e[4;31m skip $line \e[0m"
+    elif [ $line = $b ]; then
+      echo -e "\e[4;32m skip $line \e[0m"
+    else
+      echo -e "\e[4;36m delete $line \e[0m"
+      git branch -d $line
+    fi
+  done
+}
