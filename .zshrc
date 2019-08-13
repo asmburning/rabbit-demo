@@ -401,4 +401,5 @@ syncZshrc(){
   git pull
   gam 'sync'
   git push
+  cd
 }
