@@ -109,7 +109,6 @@ alias atom="open -a 'Atom' "
 
 alias lg="sh /Users/liuxinyi/lg.sh"
 alias m2="sh /Users/liuxinyi/m2.sh"
-alias la="ls -a"
 
 alias pjson="python -m json.tool"
 
@@ -341,13 +340,13 @@ fi
 }
 
 #change file or directory permission
-#sudo chown -R $USER ~/.oh-my-zsh
+#sudo chmod -R 755 ~/.oh-my-zsh
 mychmod(){
   sudo chmod -R 755 $1
 }
 
 #change file or directory owner
-#sudo chmod -R 755 ~/.oh-my-zsh
+#sudo chown -R $USER ~/.oh-my-zsh
 mychown(){
   echo $1
   sudo chown -R $USER $1
