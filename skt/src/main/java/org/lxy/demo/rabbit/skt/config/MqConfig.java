@@ -23,9 +23,8 @@ public class MqConfig {
 
     private String host = "127.0.0.1";
     private int port = 5672;
-    private String username = "testmq";
-    private String pwd = "testmq";
-    private String virtualHost = "/test_vh";
+    private String username = "guest";
+    private String pwd = "guest";
 
     @Bean
     public ConnectionFactory connectionFactory() {
@@ -34,7 +33,6 @@ public class MqConfig {
         factory.setPort(port);
         factory.setUsername(username);
         factory.setPassword(pwd);
-        factory.setVirtualHost(virtualHost);
         return factory;
     }
 

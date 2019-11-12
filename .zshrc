@@ -124,7 +124,7 @@ alias weather="python3 /Users/liuxinyi/PycharmProjects/RentBikeAutoTest/xxx/weat
 
 alias gitam="git commit -am "
 
-alias rabbitmq-server="sh /usr/local/Cellar/rabbitmq/3.7.14/sbin/rabbitmq-server"
+alias rabbitmq-server="sh /usr/local/Cellar/rabbitmq/3.7.15/sbin/rabbitmq-server"
 
 # 查询Java 版本和目录
 # /usr/libexec/java_home -V
@@ -165,6 +165,12 @@ alias order='echo -e "
 \e[4;36m pro:1606 1607 2725 2726  \e[0m" ;
 echo "cd /workspace/carkey/AppRentOrderService/latest/logs" | pbcopy;lg'
 
+alias orderSync='echo -e "
+\e[4;32m dev:03081   fat: 3772 \e[0m
+\e[4;33m uat: 3774  \e[0m
+\e[4;36m pro: 6623 6624 \e[0m" ;
+echo "cd /workspace/carkey/AppRentOrderSyncService/latest/logs" | pbcopy;lg'
+
 alias bikeM="echo 'cd /workspace/carkey/AppRentBikeManagerService/latest/logs' | pbcopy;lg"
 alias activity="echo 'cd /workspace/carkey/AppRentActivityService/latest/logs' | pbcopy;lg"
 
@@ -177,7 +183,7 @@ echo "cd /workspace/carkey/AppRentActivityService/latest/logs" | pbcopy;lg'
 
 alias baseData='echo -e "
 \e[4;32m dev:04146  fat:04414  \e[0m
-\e[4;33m uat:04679  pt:04698   \e[0m
+\e[4;33m uat:3774 3775  pt:04698   \e[0m
 \e[4;36m pro:04630 04631 04632 04633  \e[0m" ;
 echo "cd /workspace/carkey/AppRentBaseDataService/latest/logs" | pbcopy;lg'
 
@@ -348,7 +354,6 @@ mychmod(){
 #change file or directory owner
 #sudo chown -R $USER ~/.oh-my-zsh
 mychown(){
-  echo $1
   sudo chown -R $USER $1
 }
 
@@ -373,6 +378,26 @@ g(){
 alias pdf="open -a 'Adobe Acrobat Reader DC' "
 alias preview="open -a 'Preview' "
 
+iterm(){
+  p=$(pwd)
+  open -a 'iTerm' $p
+}
+
+md(){
+  sudo find ./ -mtime 0 > /Users/liuxinyi/md.txt
+}
+
+alias etyma="open '/Users/liuxinyi/Documents/完整版的配套讲义.pages' ;cd '/Users/liuxinyi/Documents/BaiduYun/voice'; ls"
+
+alias dum="du -d 0 -m * | sort -nr"
+alias duf="ls -lh"
+alias ldu="echo 'du --block-size=10M --max-depth=0 App* | sort -nr'  "
+
+
+dict(){
+  open -a 'Google Chrome' "https://www.youdict.com/root/page/p/1"
+}
+
 gbd(){
   # local  : git branch -d branchName
   # remote : git push origin --delete <BranchName>
@@ -394,11 +419,10 @@ gbd(){
   done
 }
 
-######## test ln ######
-syncZshrc(){
-  cd /Users/liuxinyi/Documents/code/GitHub/rabbit-demo1
-  git pull
-  gam 'sync'
-  git push
-  cd
+
+dup(){
+  print "list directories start with AppRent sort by size desc"
+  print 'du --block-size=100M --max-depth=0 AppRent*|sort -rn'
+  print 'list all file sort by size desc'
+  print 'ls -al --block-size=10m | sort -t" " -k 5nr'
 }
