@@ -118,10 +118,6 @@ alias python3="/Users/liuxinyi/anaconda3/bin/python"
 alias mvn36="/Users/liuxinyi/Downloads/apache-maven-3.6.0/bin/mvn"
 alias mvnd="mvn dependency:resolve -Dclassifier=sources"
 
-alias dbv="open -a 'Google Chrome' http://dbarchery.hellobike.cn/queryapplylist/"
-alias crp="open -a 'Google Chrome' https://sso.hellobike.cn"
-alias weather="python3 /Users/liuxinyi/PycharmProjects/RentBikeAutoTest/xxx/weather.py"
-
 alias gitam="git commit -am "
 
 alias rabbitmq-server="sh /usr/local/Cellar/rabbitmq/3.7.15/sbin/rabbitmq-server"
@@ -145,34 +141,11 @@ alias sd=" echo ' +10 in 10 minutes , 21:00 on 21:00 '; sudo shutdown -h"
 
 alias gb='echo $(git branch) '
 
-alias vds='python /Users/liuxinyi/venus_ds.py'
-
 alias finance='echo -e "
 \e[4;32m devs: 3081  fat:3773  \e[0m
 \e[4;33m uat:04679  pt:04698   \e[0m
 \e[4;36m pro:04630 04631 04632 04633  \e[0m" ;
 echo "cd /workspace/carkey/AppRentFinanceService/latest/logs" | pbcopy;lg'
-
-alias user='echo -e "
-\e[4;32m dev:04146  fat:04414  \e[0m
-\e[4;33m uat:04679  pt:04698   \e[0m
-\e[4;36m pro:04630 04631 04632 04633  \e[0m" ;
-echo "cd /workspace/carkey/AppRentUserService/latest/logs" | pbcopy;lg'
-
-alias order='echo -e "
-\e[4;32m dev:03081  03888  fat: 3772 \e[0m
-\e[4;33m uat:3774 3775  pt:3091   \e[0m
-\e[4;36m pro:1606 1607 2725 2726  \e[0m" ;
-echo "cd /workspace/carkey/AppRentOrderService/latest/logs" | pbcopy;lg'
-
-alias orderSync='echo -e "
-\e[4;32m dev:03081   fat: 3772 \e[0m
-\e[4;33m uat: 3774  \e[0m
-\e[4;36m pro: 6623 6624 \e[0m" ;
-echo "cd /workspace/carkey/AppRentOrderSyncService/latest/logs" | pbcopy;lg'
-
-alias bikeM="echo 'cd /workspace/carkey/AppRentBikeManagerService/latest/logs' | pbcopy;lg"
-alias activity="echo 'cd /workspace/carkey/AppRentActivityService/latest/logs' | pbcopy;lg"
 
 alias activity='echo -e "
 \e[4;32m devs:03888  dev2:03081  \e[0m
@@ -180,62 +153,6 @@ alias activity='echo -e "
 \e[4;33m uat1 :03774 03775 uat2:02851  pt:03211   \e[0m
 \e[4;36m pro2:02726 02725 pro1 01325 01326  \e[0m" ;
 echo "cd /workspace/carkey/AppRentActivityService/latest/logs" | pbcopy;lg'
-
-alias baseData='echo -e "
-\e[4;32m dev:04146  fat:04414  \e[0m
-\e[4;33m uat:3774 3775  pt:04698   \e[0m
-\e[4;36m pro:04630 04631 04632 04633  \e[0m" ;
-echo "cd /workspace/carkey/AppRentBaseDataService/latest/logs" | pbcopy;lg'
-
-alias adminApi='echo -e "
-\e[4;32m devs:03885 dev2:03081  \e[0m
-\e[4;32m fat1:03772 03773 fat2:02592  \e[0m
-\e[4;33m uat:04679  pt:04698   \e[0m
-\e[4;36m pro1:02444 02445 pro2: 02865 02866  \e[0m" ;
-echo "cd /workspace/carkey/AppRentAdminApi/latest/logs" | pbcopy;lg'
-
-alias userApi='echo -e "
-\e[4;32m dev:3885  3081  fat1:3772 3773  \e[0m
-\e[4;33m uat:3774 3775  pt:3091   \e[0m
-\e[4;36m pro1:2440 2441 pro2:2865 2866  \e[0m" ;
-echo "cd /workspace/carkey/AppRentUserApi/latest/logs" | pbcopy;lg'
-
-alias userData='echo -e "
-\e[4;32m dev:04146  fat:04414  \e[0m
-\e[4;33m uat:04679  pt:04698   \e[0m
-\e[4;36m pro:04630 04631 04632 04633  \e[0m" ;
-echo "cd /workspace/carkey/AppRentUserDataService/latest/logs" | pbcopy;lg'
-
-alias upo='echo -e "
-\e[4;32m dev:04146  fat:04414  \e[0m
-\e[4;33m uat:04679  pt:04698   \e[0m
-\e[4;36m pro:04630 04631 04632 04633  \e[0m" ;
-echo "cd /workspace/carkey/AppRentUPOService/latest/logs" | pbcopy;lg'
-
-alias gerrit='echo -e "
-\e[4;32m 01891 \e[0m
-\e[4;33m sudo su - deploy \e[0m
-\e[4;36m cd /etc/httpd \e[0m
-\e[4;36m sudo htpasswd passwords liuxinyi05972 \e[0m";
-echo "sudo htpasswd passwords liuxinyi05972" | pbcopy;lg'
-
-alias venuscommon='echo -e "
-\e[4;32m dev:04146  fat:04414  \e[0m
-\e[4;33m uat:04679  pt:04698   \e[0m
-\e[4;36m pro:04630 04631 04632 04633  \e[0m" ;
-echo "cd /workspace/carkey/AppHelloVenusCommonService/latest/logs" | pbcopy;lg'
-
-alias venusmaster='echo -e "
-\e[4;32m dev:04145  fat:04412   \e[0m
-\e[4;33m uat:04678  pt:04698   \e[0m
-\e[4;36m pro:04634 04635  \e[0m";
-echo "cd /workspace/carkey/AppHelloVenusMaster/latest/logs" | pbcopy;lg'
-
-alias venusapi='echo -e "
-\e[4;32m dev:04146  fat:04414  \e[0m
-\e[4;33m uat:04679   pt:04698   \e[0m
-\e[4;36m pro:04626 04627 04628 04629  \e[0m";
-echo "cd /workspace/carkey/AppHelloVenusApi/latest/logs" | pbcopy;lg'
 
 
 alias gerritpush='cb=$(git branch|grep \*|head -n 1);
@@ -383,20 +300,10 @@ iterm(){
   open -a 'iTerm' $p
 }
 
-md(){
-  sudo find ./ -mtime 0 > /Users/liuxinyi/md.txt
-}
-
-alias etyma="open '/Users/liuxinyi/Documents/完整版的配套讲义.pages' ;cd '/Users/liuxinyi/Documents/BaiduYun/voice'; ls"
-
 alias dum="du -d 0 -m * | sort -nr"
 alias duf="ls -lh"
 alias ldu="echo 'du --block-size=10M --max-depth=0 App* | sort -nr'  "
 
-
-dict(){
-  open -a 'Google Chrome' "https://www.youdict.com/root/page/p/1"
-}
 
 gbd(){
   # local  : git branch -d branchName
